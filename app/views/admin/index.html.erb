@@ -30,12 +30,12 @@
           <td class="actions">
             <% if @actions.include?(:edit) %>
               <%= link_to [:edit, :admin, item] do %>
-              <i class="icon-pencil5"></i>&nbsp;Edit
+              <i class="icon-pencil"></i>&nbsp;Edit
               <% end %>
             <% end %>
             <% if @actions.include?(:delete) %>
               <%= link_to [:admin, item], :method => :delete, :data => { :confirm => "Are you sure?" } do %>
-              <i class="icon-remove3"></i>&nbsp;Delete
+              <i class="icon-remove2"></i>&nbsp;Delete
               <% end %>
             <% end %>
           </td>
