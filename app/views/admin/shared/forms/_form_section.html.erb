@@ -1,31 +1,8 @@
-<% column ||= false %>
-
-<% if column %>
-  <div class="row">
-    <div class="accordion column-6">
-      <header>
-        <h2><%= title_left %></h2>
-      </header>
-      <div class="fields">
-        <%= content_left %>
-      </div>
-    </div>
-    <div class="accordion column-6">
-      <header>
-        <h2><%= title_right %></h2>
-      </header>
-      <div class="fields">
-        <%= content_right %>
-      </div>
-    </div>
+<div class="accordion">
+  <header>
+    <h2><%= title %></h2>
+  </header>
+  <div class="fields">
+    <%= @content %>
   </div>
-<% else %>
-  <div class="accordion <%= column ? 'column-6' : nil %>">
-    <header>
-      <h2><%= title %></h2>
-    </header>
-    <div class="fields">
-      <%= content %>
-    </div>
-  </div>
-<% end %>
+</div>

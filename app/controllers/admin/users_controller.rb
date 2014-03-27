@@ -9,7 +9,7 @@ class Admin::UsersController < AdminController
     end
 
     def create_params
-      params.require(:report).permit(:email, :password, :password_confirmation, 
+      params.require(:user).permit(:email, :password, :password_confirmation, 
         :is_admin)
     end
 

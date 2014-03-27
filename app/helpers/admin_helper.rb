@@ -41,8 +41,14 @@ module AdminHelper
     render :partial => 'admin/shared/forms/form_page', :locals => options
   end
 
-  def form_section(options = {})
-    render :partial => 'admin/shared/forms/form_section', :locals => options
+  def form_section(title)
+    render :partial => 'admin/shared/forms/form_section', :locals => { 
+      :title => title }
+  end
+
+  def form_columns(titles)
+    render :partial => 'admin/shared/forms/form_columns', :locals => { 
+      :titles => titles }
   end
 
   def wysiwyg(form)
