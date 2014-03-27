@@ -1,5 +1,12 @@
 Roots::Application.routes.draw do
 
+  # ------------------------------------------ Admin
+
+  get '/admin' => 'admin#index', :as => :admin_dashboard
+  namespace :admin do
+    # resources :users, :except => [:show]
+  end
+
   # ------------------------------------------ Devise
 
   devise_for :users, skip: [:sessions, :registrations]
