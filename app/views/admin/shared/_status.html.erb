@@ -1,3 +1,8 @@
 <% flash.each do |level,message| %>
-  <p class="<%= level %>"><%= message %></p>
+  <p class="<%= level %> notice">
+    <%= link_to '#', :class => 'close-notice' do %>
+      <i class="icon-close"></i>
+    <% end %>
+    <%= message %>
+  </p>
 <% end %>

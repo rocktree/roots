@@ -1,3 +1,15 @@
+.close-notice {
+  float: right;
+  &:hover {
+    i {
+      color: $color-light-darker;
+    }
+  }
+  i {
+    color: $color-light;
+  }
+}
+
 .table-container, {
   padding: 25px 50px;
 
