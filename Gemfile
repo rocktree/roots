@@ -21,8 +21,8 @@ gem 'bourbon'
 gem 'simple_form'
 gem 'devise'
 gem 'jbuilder'
-# gem 'wysihtml5-rails'
-# gem 'pickadate-rails'
+gem 'wysihtml5-rails'
+gem 'pickadate-rails'
 
 # ------------------------------------------ Testing
 
