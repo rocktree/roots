@@ -18,6 +18,6 @@ Roots::Application.routes.draw do
 
   # ------------------------------------------ Root
 
-  root :to => 'application#index'
+  root :to => 'home#index'
 
 end
