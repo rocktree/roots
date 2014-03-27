@@ -13,6 +13,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  is_admin               :boolean          default(TRUE)
 #  created_at             :datetime
 #  updated_at             :datetime
 #
