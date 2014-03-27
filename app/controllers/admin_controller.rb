@@ -30,6 +30,7 @@ class AdminController < ActionController::Base
     if @item.save
       redirect_to @routes[:index], :notice => "#{@model.to_s} was successfully created."
     else
+      @url = @routes[:index]
       render :action => "new"
     end
   end
@@ -39,6 +40,7 @@ class AdminController < ActionController::Base
     if @item.update(update_params)
       redirect_to @routes[:edit], :notice => "#{@model.to_s} was updated successfully."
     else
+      @url = @routes[:show]
       render :action => "edit"
     end
   end

@@ -1,0 +1,13 @@
+<%= simple_form_for @item, :url => @url do |f| %>
+
+  <% @content = capture do %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.input :is_admin, :label => 'Admin?' %>
+  <% end %>
+
+  <%= form_section 'user info' %>
+
+  <%= f.button :submit %>
+
+<% end %>
