@@ -100,12 +100,6 @@ module AdminHelper
   def admin_nav_items
     [
       {
-        :label => 'Reports',
-        :icon => 'file',
-        :path => admin_reports_path,
-        :controllers => ['reports']
-      },
-      {
         :label => 'Users',
         :icon => 'user',
         :path => admin_users_path,
