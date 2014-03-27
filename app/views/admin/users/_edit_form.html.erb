@@ -3,7 +3,7 @@
   <% @content = capture do %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.input :is_admin, :label => 'Admin?' %>
+    <%= f.input :is_admin, :label => 'Admin?' unless @item == current_user %>
   <% end %>
 
   <%= form_section 'user info' %>
