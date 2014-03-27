@@ -4,7 +4,8 @@ class Admin::UsersController < AdminController
     p = update_params
     p = no_pwd_params if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
     if @item.update(p)
-      redirect_to @routes[:edit], :notice => "#{@model.to_s} was updated successfully."
+      sign_in(@item, :bypass => true) unless p[:password].nil?
+      redirect_to @routes[:index], :notice => "#{@model.to_s} was updated successfully."
     else
       @url = @routes[:show]
       render :action => "edit"
