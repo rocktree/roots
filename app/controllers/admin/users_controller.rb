@@ -13,4 +13,8 @@ class Admin::UsersController < AdminController
         :is_admin)
     end
 
+    def edit_params
+      params.require(:user).permit(:password, :password_confirmation, :is_admin)
+    end
+
 end
