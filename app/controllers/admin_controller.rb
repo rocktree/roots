@@ -38,7 +38,7 @@ class AdminController < ActionController::Base
   def update
     update_params ||= create_params
     if @item.update(update_params)
-      redirect_to @routes[:edit], :notice => "#{@model.to_s} was updated successfully."
+      redirect_to @routes[:index], :notice => "#{@model.to_s} was updated successfully."
     else
       @url = @routes[:show]
       render :action => "edit"
