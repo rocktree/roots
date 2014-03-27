@@ -8,7 +8,7 @@ class AdminController < ActionController::Base
   before_action :set_routes
 
   def dashboard
-    redirect_to admin_pages_path
+    redirect_to admin_users_path
   end
 
   def index
@@ -56,6 +56,7 @@ class AdminController < ActionController::Base
     end
 
     def set_defaults
+      @model = User
       @columns = ['title']
       @actions = [:edit, :delete]
     end

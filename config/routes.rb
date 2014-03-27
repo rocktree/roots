@@ -2,9 +2,9 @@ Roots::Application.routes.draw do
 
   # ------------------------------------------ Admin
 
-  get '/admin' => 'admin#index', :as => :admin_dashboard
+  get '/admin' => 'admin#dashboard', :as => :admin_dashboard
   namespace :admin do
-    # resources :users, :except => [:show]
+    resources :users, :except => [:show]
   end
 
   # ------------------------------------------ Devise
