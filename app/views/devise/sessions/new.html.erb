@@ -1,15 +1,18 @@
-<h2>Sign in</h2>
+<section id="login-form">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="logo">
+    <%= link_to root_path do %>
+      <i class="icon-logo"></i>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
-  </div>
-<% end %>
+  <%= admin_partial 'status' %>
 
-<%= render "devise/shared/links" %>
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.button :submit, "Sign In", :class => 'block' %>
+    <%= render "devise/shared/links" %>
+  <% end %>
+
+</section>

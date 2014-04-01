@@ -35,6 +35,12 @@ module AdminHelper
     end
   end
 
+  # --------------------------------- Rendering Partials
+
+  def admin_partial(name)
+    render :partial => "admin/shared/#{name}"
+  end
+
   # --------------------------------- Forms
 
   def form_page(options = {})
