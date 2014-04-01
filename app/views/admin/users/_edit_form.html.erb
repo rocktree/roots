@@ -1,12 +1,10 @@
 <%= simple_form_for @item, :url => @url do |f| %>
 
-  <% @content = capture do %>
+  <%= form_section 'user info' do %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
     <%= f.input :is_admin, :label => 'Admin?' unless @item == current_user %>
   <% end %>
-
-  <%= form_section 'user info' %>
 
   <%= f.button :submit %>
 
