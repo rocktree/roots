@@ -4,8 +4,8 @@ class AdminController < ActionController::Base
 
   protect_from_forgery :with => :exception
   before_filter :authenticate_admin
-  before_action :set_defaults
-  before_action :set_routes
+  before_action :set_defaults, :except => [:dashboard]
+  before_action :set_routes, :except => [:dashboard]
 
   def dashboard
     redirect_to admin_users_path
@@ -26,8 +26,16 @@ class AdminController < ActionController::Base
 
   def create
     @item = @model.new(create_params)
-
+    @item.slug = '' if @item.attributes.has_key? 'slug'
     if @item.save
+      if @item.attributes.has_key? 'slug' 
+        if create_params[:slug].blank?
+          @item.slug = @item.create_slug
+        else
+          @item.slug = @item.make_slug_unique(create_params[:slug])
+        end
+        @item.save
+      end
       redirect_to @routes[:index], :notice => "#{@model.to_s} was successfully created."
     else
       @url = @routes[:index]
@@ -37,8 +45,15 @@ class AdminController < ActionController::Base
 
   def update
     update_params ||= create_params
+    if @item.attributes.has_key? 'slug' and !update_params[:slug].blank?
+      update_params[:slug] = @item.make_slug_unique(update_params[:slug])
+    end
     if @item.update(update_params)
-      redirect_to @routes[:index], :notice => "#{@model.to_s} was updated successfully."
+      if @item.attributes.has_key? 'slug'
+        @item.create_slug if update_params[:slug].blank? and !update_params[:slug].nil?
+        @routes[:edit] = send("edit_admin_#{model_table_singular}_path", @item)
+      end
+      redirect_to @routes[:edit], :notice => "#{@model.to_s} was updated successfully."
     else
       @url = @routes[:show]
       render :action => "edit"
