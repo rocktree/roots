@@ -75,6 +75,13 @@ module AdminHelper
     </a>".html_safe
   end
 
+  def form_eligible?(attribute)
+    if attribute == 'id' || attribute == 'created_at' || attribute == 'updated_at'
+      return false
+    end
+    true
+  end
+
   # --------------------------------- Time
 
   def months

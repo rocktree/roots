@@ -1,10 +1,10 @@
 <%= simple_form_for @item, :url => @url do |f| %>
 
-  <% content = capture do %>
-    <%= f.input @columns.first.to_sym %>
+  <%= form_section @model.to_s.humanize.downcase do %>
+    <% @model.column_names.each do |attribute| %>
+      <%= f.input attribute.to_sym if form_eligible?(attribute) %>
+    <% end %>
   <% end %>
-
-  <%= form_section :title => 'overview', :content => content %>
 
   <%= f.button :submit %>
 
