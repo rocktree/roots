@@ -2,7 +2,11 @@
 
   <%= form_section @model.to_s.humanize.downcase do %>
     <% @model.column_names.each do |attribute| %>
-      <%= f.input attribute.to_sym if form_eligible?(attribute) %>
+      <% if attribute == 'body' %>
+        <%= wysiwyg(f) %>
+      <% else %>
+        <%= f.input attribute.to_sym if form_eligible?(attribute) %>
+      <% end %>
     <% end %>
   <% end %>
 

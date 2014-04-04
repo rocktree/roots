@@ -58,7 +58,7 @@ module AdminHelper
       :title => title, :content => capture(&block) }
   end
 
-  def wysiwyg(form)
+  def wysiwyg(form, field = :body)
     render :partial => 'admin/shared/forms/editor', :locals => { :f => form, 
       :field => field }
   end
