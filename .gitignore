@@ -17,7 +17,7 @@
 
 # Sensitive Files
 config/database.yml
-config/settings.yml
+config/settings_private.yml
 
 # Dumb Files
 *.DS_Store
