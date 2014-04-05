@@ -41,12 +41,13 @@
           <% if @actions %>
           <td class="actions">
             <% if @actions.include?(:edit) %>
-              <%= link_to [:edit, :admin, item] do %>
+              <%= link_to send("edit_admin_#{controller_name.singularize}_path", item) do %>
               <i class="icon-pencil"></i>&nbsp;Edit
               <% end %>
             <% end %>
             <% if @actions.include?(:delete) %>
-              <%= link_to [:admin, item], :method => :delete, :data => { :confirm => "Are you sure?" } do %>
+              <%= link_to send("admin_#{controller_name.singularize}_path", item), 
+                :method => :delete, :data => { :confirm => "Are you sure?" } do %>
               <i class="icon-remove2"></i>&nbsp;Delete
               <% end %>
             <% end %>
