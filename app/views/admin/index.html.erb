@@ -14,6 +14,12 @@
           <% @columns.each do |col| %>
           <th><%= col.titleize %></th>
           <% end %>
+          <% if @concerns.include?(:slug) %>
+          <th>URL</th>
+          <% end %>
+          <% if @concerns.include?(:publishable) %>
+          <th>Status</th>
+          <% end %>
           <% if @actions %>
           <th class="actions">Actions</th>
           <% end %>
@@ -25,6 +31,12 @@
         <tr>
           <% @columns.each do |col| %>
           <td><%= item.send(col) %></td>
+          <% end %>
+          <% if @concerns.include?(:slug) %>
+          <td><%= item.slug %></td>
+          <% end %>
+          <% if @concerns.include?(:publishable) %>
+          <td><%= publishable_status(item) %></td>
           <% end %>
           <% if @actions %>
           <td class="actions">

@@ -73,9 +73,18 @@ class AdminController < ActionController::Base
     end
 
     def set_defaults
-      @model = User
+      @model = controller_name.singularize.capitalize.constantize
       @columns = ['title']
       @actions = [:edit, :delete]
+      @concerns = []
+    end
+
+    def create_params
+      fields = []
+      @model.attribute_names.each do |a|
+        fields << a.to_sym unless a == 'id' || a == 'created_at' || a == 'updated_at'
+      end
+      params.require(@model.to_s.downcase.to_sym).permit(fields.collect(&:to_sym))
     end
 
 end
