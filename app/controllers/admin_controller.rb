@@ -73,7 +73,9 @@ class AdminController < ActionController::Base
     end
 
     def set_defaults
-      @model = controller_name.singularize.capitalize.constantize
+      if Rails.const_defined?(controller_name.classify)
+        @model = controller_name.classify.constantize
+      end
       @columns = ['title']
       @actions = [:edit, :delete]
       @concerns = []
