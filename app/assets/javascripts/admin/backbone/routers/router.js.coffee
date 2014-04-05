@@ -10,3 +10,9 @@ class Admin.Routers.Router extends Backbone.Router
     new Admin.Views.Paginator if $('table').length > 0
     new Admin.Views.DropdownToggle if $('.dropdown-toggle').length > 0
     new Admin.Views.Notice if $('.notice').length > 0
+
+  routes:
+    'admin': 'initAdmin'
+
+  initAdmin: =>
+    console.log 'Wecome to Roots Admin!'
