@@ -85,3 +85,62 @@ Now you should be able to start up your Rails server and get busy development.
 ```
 $ bundle exec rails s
 ```
+
+Seeding Database
+-----------------------
+
+We have a few handy tasks to help you seed your database. Since the models you
+create will likely differ from project-to-project, we've taken the route of
+using seeds versus rake tasks. However, that can be a much faster way to
+approach filling a database if you just need test data.
+
+Otherwise, once you have some models you can create the seed files by running
+this rake task.
+
+```
+$ bundle exec rake db:seed:create_files
+```
+
+This looks to your existing models and creates a CSV file for each model in
+`db/csv/`. You may remove columns as necessary and fill up those files with test
+data. The next time you seed your database, these files will be read and added
+to the database.
+
+Once your database is created, the best way to go about ensuring your seeds are
+all in there and you haven't added something twice is to reset the database.
+
+```
+$ bundle exec rake db:reset
+```
+
+This will attempt to drop, create, migrate and seed your database.
+
+### Editing Columns
+
+Column headings can be edited as you wish, but they **must be valid attributes
+within the model**.
+
+For example, the `User` has many attributes we don't care about when we create a
+user. Plus, we need the attributes `password` and `password_confirmation` to
+successfully create a user. Therefore, we can edit these columns if necessary.
+Take a look at the default `db/seeds/user.csv` file as an example.
+
+### Overwriting ID
+
+You don't have to, but you may overwrite the object `id` attribute, so long as
+it is valid.
+
+### Uploading Files
+
+We've made uploading test files nice and easy, too. Add `:file` to the CSV
+heading, then add the filename (with extension) of the file to upload in the
+appropriate row. And last, drop the file in `lib/assets/seeds`, since that's
+where we look for an upload (to keep your CSV files clean).
+
+So, if your file attribute is `image`, your CSV heading would be `image:file`,
+then you could add `image.jpg` to the right CSV row, and add the file to
+`lib/assets/seeds/image.jpg`.
+
+> This is only tested using CarrierWave. CarrierWave is not yet a part of this
+> repo. But it is a great gem and very easy to work with. [Check it
+> out.](https://github.com/carrierwaveuploader/carrierwave)
