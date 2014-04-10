@@ -15,7 +15,11 @@ ActiveRecord::Base.descendants.each do |model|
           attrs[k] = v
         end
       end
-      model.create!(attrs.to_hash.symbolize_keys)
+      item = model.create!(attrs.to_hash.symbolize_keys)
+      puts "CREATED #{model.to_s.upcase} >> #{model.to_s} ##{item.id}"
+    end
+    if ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
+      ActiveRecord::Base.connection.reset_pk_sequence!(model.to_s.tableize)
     end
   end
 end
