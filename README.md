@@ -141,6 +141,24 @@ So, if your file attribute is `image`, your CSV heading would be `image:file`,
 then you could add `image.jpg` to the right CSV row, and add the file to
 `lib/assets/seeds/image.jpg`.
 
-> This is only tested using CarrierWave. CarrierWave is not yet a part of this
-> repo. But it is a great gem and very easy to work with. [Check it
-> out.](https://github.com/carrierwaveuploader/carrierwave)
+> This is only tested using
+> [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
+> CarrierWave is not yet a part of this repo. But it is a great gem and very
+> easy to work with.
+
+Users
+-----------------------
+
+We're using [Devise](https://github.com/plataformatec/devise) to manage our
+users and user authentication. Devise is a great gem and it's nice and easy to
+work with.
+
+Once you're set up and running, the `User` model is already created and working,
+along with support for access to the admin namespace.
+
+### Roles
+
+By default there are only two roles, and they are designated by the `is_admin`
+boolean on the `User` model. By default, only those users with `is_admin` set to
+`true` have access to the CMS, or `admin` namespace (i.e. anything that inherits
+from the `AdminController`). There is more about this below.
