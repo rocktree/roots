@@ -8,7 +8,9 @@ ActiveRecord::Base.descendants.each do |model|
       attrs = {}
       row.to_hash.each do |k,v|
         if k =~ /.*\:file/
-          attrs[k.split(':')[0]] = File.open("#{Rails.root}/lib/assets/seeds/#{v}")
+          unless v.blank?
+            attrs[k.split(':')[0]] = File.open("#{Rails.root}/lib/assets/seeds/#{v}")
+          end
         else
           attrs[k] = v
         end
