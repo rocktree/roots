@@ -13,27 +13,27 @@ Getting Started
 
 First, grab a copy of the repo for yourself.
 
-```bash
+```
 $ git clone git@github.com:seancdavis/roots.git your_project_name
 ```
 
 Change the remote origin to push to your new project location.
 
-```bash
+```
 $ git remote set-url origin your_new_url
 $ git push origin master
 ```
 
 Then, let's go into the project and install our default gems.
 
-```bash
+```
 $ cd your_project_name
 $ bundle install --local
 ```
 
 Then we can rename the app.
 
-```bash
+```
 $ bundle exec rake rename:app[new_name]
 ```
 
@@ -65,7 +65,7 @@ environment.
 If you've chosen postgres, you'll want to update the `Gemfile` -- remove `gem
 'mysql'` and uncomment `gem 'pg'`. Then update your bundle:
 
-```bash
+```
 $ bundle install
 $ bundle clean
 ```
@@ -74,7 +74,7 @@ $ bundle clean
 
 Now you can create, migrate and seed the database.
 
-```bash
+```
 $ bundle exec rake db:setup
 ```
 
@@ -82,6 +82,6 @@ $ bundle exec rake db:setup
 
 Now you should be able to start up your Rails server and get busy development.
 
-```bash
+```
 $ bundle exec rails s
 ```
