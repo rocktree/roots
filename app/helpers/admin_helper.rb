@@ -18,23 +18,6 @@ module AdminHelper
     model_table.singularize
   end
 
-  # --------------------------------- Routes
-
-  def set_routes
-    @routes = {
-      :index => send("admin_#{model_table}_path"),
-      :new => send("new_admin_#{model_table_singular}_path")
-    }
-    unless params[:id].nil?
-      @item = @model.find_by_id(params[:id])
-      @item = @model.find_by_slug(params[:id]) if @item.nil?
-      @routes.merge!(
-        :show => send("admin_#{model_table_singular}_path", @item),
-        :edit => send("edit_admin_#{model_table_singular}_path", @item)
-      )
-    end
-  end
-
   # --------------------------------- Rendering Partials
 
   def admin_partial(name)
