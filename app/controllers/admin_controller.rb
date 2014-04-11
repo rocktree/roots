@@ -1,12 +1,13 @@
 class AdminController < ActionController::Base
+  protect_from_forgery :with => :exception
+
   helper_method :sort_column, :sort_direction
 
-  include AdminHelper
-
-  protect_from_forgery :with => :exception
   before_filter :authenticate_admin
   before_action :set_defaults, :except => [:dashboard]
   before_action :set_routes, :except => [:dashboard]
+
+  include AdminHelper
 
   def dashboard
     redirect_to admin_users_path
