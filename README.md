@@ -162,3 +162,47 @@ By default there are only two roles, and they are designated by the `is_admin`
 boolean on the `User` model. By default, only those users with `is_admin` set to
 `true` have access to the CMS, or `admin` namespace (i.e. anything that inherits
 from the `AdminController`). There is more about this below.
+
+Settings
+-----------------------
+
+Sometimes it's necessary (or nice) to have global settings accessible throughout
+your project. While you can use
+[locales](http://guides.rubyonrails.org/i18n.html) to take care of some of those
+options, we've provided an alternative option with Roots.
+
+By default, you have a file in `config/settings.yml`. This is where you should
+place any global constants. This file is read on server start and placed into a
+`SETTINGS` constant hash, by reading your current environment.
+
+For example, if you look at the default file, you see this:
+
+```
+development: &default
+  say_hello: "Hello World!"
+
+test: &test
+  <<: *default
+
+production: &production
+  <<: *default
+```
+
+If you start up the server, the output of `SETTINGS['say_hello']` would be
+`'Hello World!'`.
+
+By default, the `test` and `production` environments inherit from `development`,
+but you could change any values as needed. Just add them under the `<<:
+*default` line.
+
+> **Don't forget to restart your server when adding new values.**
+
+### Sensitive Data
+
+In some cases, you may want a feature like this, but you don't want to add the
+values to your repo. We've provided a similar approach to private settings.
+
+You'll see a file at `config/settings_private.sample.yml`. You can rename or
+copy this file to `config/settings_private.yml`. Then, when you restart your
+server, you'll have the values within that file available through a global
+`PRIVATE` constant. And the `settings_private.yml` file is ignored by git.
