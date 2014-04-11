@@ -1,4 +1,5 @@
 class AdminController < ActionController::Base
+  helper_method :sort_column, :sort_direction
 
   include AdminHelper
 
@@ -79,6 +80,7 @@ class AdminController < ActionController::Base
       @columns = ['title']
       @actions = [:edit, :delete]
       @concerns = []
+      @sortable = ['title']
     end
 
     def create_params
@@ -87,6 +89,14 @@ class AdminController < ActionController::Base
         fields << a.to_sym unless a == 'id' || a == 'created_at' || a == 'updated_at'
       end
       params.require(@model.to_s.downcase.to_sym).permit(fields.collect(&:to_sym))
+    end
+
+    def sort_column
+      Report.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
 end

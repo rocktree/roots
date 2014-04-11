@@ -12,16 +12,25 @@
       <thead>
         <tr>
           <% @columns.each do |col| %>
-          <th><%= col.titleize %></th>
+            <th>
+              <% if @sortable.include?(col) %>
+                <%= link_to_sort col %>
+              <% else %>
+                <%= col.titleize %>
+              <% end %>
+            </th>
           <% end %>
+
           <% if @concerns.include?(:slug) %>
-          <th>URL</th>
+            <th>URL</th>
           <% end %>
+
           <% if @concerns.include?(:publishable) %>
-          <th>Status</th>
+            <th>Status</th>
           <% end %>
+
           <% if @actions %>
-          <th class="actions">Actions</th>
+            <th class="actions">Actions</th>
           <% end %>
         </tr>
       </thead>
@@ -30,28 +39,35 @@
         <% @items.each do |item| %>
         <tr>
           <% @columns.each do |col| %>
-          <td><%= item.send(col) %></td>
+            <% if col == 'date' %>
+            <td class="text-center"><%= item.formatted_date %></td>
+            <% else %>
+            <td><%= item.send(col) %></td>
+            <% end %>
           <% end %>
+
           <% if @concerns.include?(:slug) %>
-          <td><%= item.slug %></td>
+            <td><%= item.slug %></td>
           <% end %>
+
           <% if @concerns.include?(:publishable) %>
-          <td><%= publishable_status(item) %></td>
+            <td><%= publishable_status(item) %></td>
           <% end %>
+
           <% if @actions %>
-          <td class="actions">
-            <% if @actions.include?(:edit) %>
-              <%= link_to send("edit_admin_#{controller_name.singularize}_path", item) do %>
-              <i class="icon-pencil"></i>&nbsp;Edit
+            <td class="actions">
+              <% if @actions.include?(:edit) %>
+                <%= link_to send("edit_admin_#{controller_name.singularize}_path", item) do %>
+                <i class="icon-pencil"></i>&nbsp;Edit
+                <% end %>
               <% end %>
-            <% end %>
-            <% if @actions.include?(:delete) %>
-              <%= link_to send("admin_#{controller_name.singularize}_path", item), 
-                :method => :delete, :data => { :confirm => "Are you sure?" } do %>
-              <i class="icon-remove2"></i>&nbsp;Delete
+              <% if @actions.include?(:delete) %>
+                <%= link_to send("admin_#{controller_name.singularize}_path", item), 
+                  :method => :delete, :data => { :confirm => "Are you sure?" } do %>
+                <i class="icon-remove2"></i>&nbsp;Delete
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
+            </td>
           <% end %>
         </tr>
         <% end %>
