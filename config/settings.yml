@@ -1,8 +1,0 @@
-development: &default
-  say_hello: "Hello World!"
-
-test: &test
-  <<: *default
-
-production: &production
-  <<: *default
